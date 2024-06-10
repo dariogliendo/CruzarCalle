@@ -1,20 +1,117 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpsbtjmg54hi8"]
+[gd_scene load_steps=18 format=3 uid="uid://dpsbtjmg54hi8"]
 
-[ext_resource type="Script" path="res://scripts/auto_jeep.gd" id="1_tbkxy"]
-[ext_resource type="Texture2D" uid="uid://ciau0f6i65ix4" path="res://assets/vehiculos/Green_JEEP_CLEAN_All_000.png" id="2_dsopy"]
+[ext_resource type="Script" path="res://scripts/auto_jeep.gd" id="1_aiuf4"]
+[ext_resource type="Texture2D" uid="uid://c0j25xgh63scc" path="res://assets/vehiculos/Green_JEEP_CLEAN_EAST_000-sheet.png" id="2_5e34x"]
+[ext_resource type="PackedScene" uid="uid://dva7ae23t6ah8" path="res://escenas/area_relentizar.tscn" id="3_ycxwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4v3w1"]
-size = Vector2(95, 58)
+size = Vector2(57, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc6al"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6tke"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eodmc"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30ntd"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0dht"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih7ap"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvyl5"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltpvx"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhmvv"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri7yv"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(100, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ioh"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(200, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obap3"]
+atlas = ExtResource("2_5e34x")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0y7q7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc6al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6tke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eodmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30ntd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0dht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih7ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvyl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltpvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhmvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri7yv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ioh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obap3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Jeep" type="CharacterBody2D"]
-script = ExtResource("1_tbkxy")
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_aiuf4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 5)
+position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_4v3w1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(3.8147e-06, -1)
-scale = Vector2(1.66, 1.66)
-texture = ExtResource("2_dsopy")
+sprite_frames = SubResource("SpriteFrames_0y7q7")
+
+[node name="Relentizar" parent="." instance=ExtResource("3_ycxwd")]
+position = Vector2(-30, 0)

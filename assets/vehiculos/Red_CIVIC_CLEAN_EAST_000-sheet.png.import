@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciau0f6i65ix4"
-path="res://.godot/imported/Green_JEEP_CLEAN_All_000.png-582c43443ff816f56f2b116465c1a238.ctex"
+uid="uid://bbe1axet6e7ix"
+path="res://.godot/imported/Red_CIVIC_CLEAN_EAST_000-sheet.png-4b001a1cee7807dd7c8302dc7a3c8c2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/vehiculos/Green_JEEP_CLEAN_All_000.png"
-dest_files=["res://.godot/imported/Green_JEEP_CLEAN_All_000.png-582c43443ff816f56f2b116465c1a238.ctex"]
+source_file="res://assets/vehiculos/Red_CIVIC_CLEAN_EAST_000-sheet.png"
+dest_files=["res://.godot/imported/Red_CIVIC_CLEAN_EAST_000-sheet.png-4b001a1cee7807dd7c8302dc7a3c8c2e.ctex"]
 
 [params]
 

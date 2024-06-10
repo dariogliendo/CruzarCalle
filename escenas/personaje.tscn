@@ -1,12 +1,30 @@
-[gd_scene load_steps=34 format=3 uid="uid://cclue3lptd3wt"]
+[gd_scene load_steps=44 format=3 uid="uid://cclue3lptd3wt"]
 
 [ext_resource type="Texture2D" uid="uid://c6lk80ip1kar6" path="res://assets/16x16 Chicken/Walk/Walk_01_Front_R-Sheet.png" id="1_2djnd"]
 [ext_resource type="Script" path="res://scripts/personaje.gd" id="1_k2hsb"]
 [ext_resource type="Texture2D" uid="uid://ij8rp6uq4n86" path="res://assets/16x16 Chicken/Walk/Walk_02_Back_L-Sheet.png" id="2_87wkc"]
+[ext_resource type="Texture2D" uid="uid://pur3a4dc2hem" path="res://assets/16x16 Chicken/Hurt/Hurt_Front_R-Sheet.png" id="2_e1nlt"]
 [ext_resource type="Texture2D" uid="uid://c5eojyf1oyd4o" path="res://assets/16x16 Chicken/Walk/Walk_02_Front_R-Sheet.png" id="3_oaxyj"]
 [ext_resource type="Texture2D" uid="uid://cd701qsn4mg7" path="res://assets/16x16 Chicken/Walk/Walk_02_Front_L-Sheet.png" id="4_py0yg"]
 [ext_resource type="Texture2D" uid="uid://clbgu2r5rusnw" path="res://assets/16x16 Chicken/Idle/Idle_01_Back_R-Sheet.png" id="5_q1vfm"]
 [ext_resource type="Texture2D" uid="uid://ba1nmavb7t5rm" path="res://assets/16x16 Chicken/Idle/Idle_01_Front_R-Sheet.png" id="6_u83no"]
+[ext_resource type="Texture2D" uid="uid://dfmxerjs0pdwn" path="res://assets/16x16 Chicken/Reactions/React_Joy_Front_R-Sheet.png" id="9_pdk3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gts42"]
+atlas = ExtResource("2_e1nlt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60sjy"]
+atlas = ExtResource("2_e1nlt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqy8l"]
+atlas = ExtResource("2_e1nlt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqb7w"]
+atlas = ExtResource("2_e1nlt")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0eoe"]
 atlas = ExtResource("1_2djnd")
@@ -104,8 +122,41 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("6_u83no")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5ak6"]
+atlas = ExtResource("9_pdk3p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx5pf"]
+atlas = ExtResource("9_pdk3p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axet4"]
+atlas = ExtResource("9_pdk3p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5x75"]
+atlas = ExtResource("9_pdk3p")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_idc5b"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gts42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60sjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqy8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqb7w")
+}],
+"loop": true,
+"name": &"chocado",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m0eoe")
@@ -207,23 +258,40 @@ animations = [{
 "loop": true,
 "name": &"idle_frente",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5ak6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx5pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axet4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5x75")
+}],
+"loop": true,
+"name": &"victoria",
+"speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gj30"]
-radius = 25.0
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwsyx"]
+size = Vector2(49, 21)
 
-[node name="Gallina" type="Node2D"]
+[node name="Personaje" type="Area2D"]
 script = ExtResource("1_k2hsb")
 
-[node name="Personaje" type="CharacterBody2D" parent="."]
-
-[node name="Animacion" type="AnimatedSprite2D" parent="Personaje"]
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4.3125, 4.3125)
 sprite_frames = SubResource("SpriteFrames_idc5b")
-animation = &"idle_frente"
+animation = &"victoria"
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Personaje"]
-position = Vector2(5, -2)
-shape = SubResource("CapsuleShape2D_1gj30")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 22.5)
+shape = SubResource("RectangleShape2D_cwsyx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

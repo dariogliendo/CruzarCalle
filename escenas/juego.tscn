@@ -1,20 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciohc5deuggtb"]
+[gd_scene load_steps=11 format=3 uid="uid://ciohc5deuggtb"]
 
 [ext_resource type="PackedScene" uid="uid://cclue3lptd3wt" path="res://escenas/personaje.tscn" id="1_0mh5n"]
 [ext_resource type="Script" path="res://scripts/juego.gd" id="1_wngge"]
 [ext_resource type="TileSet" uid="uid://dms214g4gb3cv" path="res://calle.tres" id="2_fkwpw"]
-[ext_resource type="Script" path="res://scripts/Label.gd" id="4_jgpbu"]
+[ext_resource type="Texture2D" uid="uid://tax2ymp56d4l" path="res://assets/you_died.png" id="5_7ily8"]
+[ext_resource type="AudioStream" uid="uid://dmonarq3cuqin" path="res://assets/dark-souls-_you-died_-sound-effect-from-youtube.mp3" id="6_oclse"]
+[ext_resource type="AudioStream" uid="uid://ibv473mlo2f2" path="res://assets/open-new-level-143027.mp3" id="6_qr67r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_apcnj"]
-size = Vector2(1151, 127)
+[sub_resource type="Animation" id="Animation_8kn3b"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_njmw2"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xl51f"]
+_data = {
+"fade_in": SubResource("Animation_8kn3b"),
+"fade_out": SubResource("Animation_njmw2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frscx"]
+size = Vector2(1157, 129)
 
 [node name="Juego" type="Node2D"]
 script = ExtResource("1_wngge")
+frecuencia_autos = 0.5
 
 [node name="Gallina" parent="." instance=ExtResource("1_0mh5n")]
 z_index = 3
 position = Vector2(580, 575)
 scale = Vector2(0.7, 0.7)
+collision_layer = 3
 
 [node name="Mapa" type="TileMap" parent="."]
 tile_set = ExtResource("2_fkwpw")
@@ -27,14 +67,7 @@ tile_set = ExtResource("2_fkwpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(2424851, 65536, 12, 2359355, 131072, 11, 2490434, 458752, 11, 2490413, 262144, 12, 2424838, 196608, 11, 2228237, 393216, 11, 2555932, 65536, 12, 2424883, 262144, 13, 327730, 0, 13, 327742, 196608, 12, 458810, 196608, 13, 131130, 327680, 13, 393235, 131072, 11, 131084, 65536, 12, 327686, 262144, 12, 458763, 131072, 12, 262151, 393216, 11, 393217, 327680, 13, 393256, 65536, 11, 196643, 262144, 11, 458779, 393216, 11, 196633, 327680, 12, 589877, 393216, 11, 262213, 196608, 13, 131140, 196608, 13, 2359342, 393216, 11, 2490406, 65536, 12, 2293785, 65536, 12, 2424856, 131072, 11, 2555917, 131072, 13, 2293765, 65536, 13, 2293761, 393216, 11, 2490369, 262144, 12)
 
-[node name="Victoria" type="Area2D" parent="."]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Victoria"]
-position = Vector2(576.5, 64.5)
-shape = SubResource("RectangleShape2D_apcnj")
-
-[node name="Label" type="Label" parent="."]
+[node name="victoria_texto" type="Label" parent="."]
 visible = false
 offset_left = 3.0
 offset_top = 2.0
@@ -45,7 +78,31 @@ text = "¡VICTORIA!"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-script = ExtResource("4_jgpbu")
 
-[connection signal="body_entered" from="Victoria" to="Gallina" method="_on_victoria_body_entered"]
-[connection signal="body_entered" from="Victoria" to="Label" method="_on_victoria_body_entered"]
+[node name="YOU DIED" type="Sprite2D" parent="."]
+visible = false
+z_index = 9
+position = Vector2(574, 322)
+scale = Vector2(0.609259, 0.609259)
+texture = ExtResource("5_7ily8")
+
+[node name="Animaciones" type="AnimationPlayer" parent="YOU DIED"]
+libraries = {
+"": SubResource("AnimationLibrary_xl51f")
+}
+
+[node name="die_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_oclse")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(575.5, 54.5)
+shape = SubResource("RectangleShape2D_frscx")
+
+[node name="victory_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qr67r")
+
+[connection signal="area_entered" from="Gallina" to="." method="_on_gallina_area_entered"]
+[connection signal="body_entered" from="Gallina" to="." method="_on_gallina_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
