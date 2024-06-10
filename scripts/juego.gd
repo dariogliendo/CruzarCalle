@@ -5,10 +5,12 @@ const CAMION = preload("res://escenas/auto_camion.tscn")
 const AMBULANCIA = preload("res://escenas/auto_ambulancia.tscn")
 const CIVIC = preload("res://escenas/auto_civic.tscn")
 const CHETO = preload("res://escenas/auto_cheto.tscn")
+const COUPE = preload("res://escenas/auto_coupe.tscn")
+const PICKUP = preload("res://escenas/auto_pickup.tscn")
 const tracks = [200, 270, 370, 450]
 @export var frecuencia_autos : float = 1.0
 
-const VEHICULOS = [AMBULANCIA, JEEP, CAMION, CIVIC, CHETO]
+const VEHICULOS = [AMBULANCIA, JEEP, CAMION, CIVIC, CHETO, COUPE, PICKUP]
 var instanciados = []
 var rng = RandomNumberGenerator.new()
 

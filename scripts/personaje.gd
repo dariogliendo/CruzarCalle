@@ -24,11 +24,13 @@ func _process(delta):
 			encarando_y = 0
 			position.y += velocidad
 		if Input.is_action_pressed("derecha"):
-			$Animacion.play("corriendo_derecha")
+			if not Input.is_action_pressed("arriba") and not Input.is_action_pressed("abajo"):
+				$Animacion.play("corriendo_derecha")
 			encarando_x = 1
 			position.x += velocidad
 		if Input.is_action_pressed("izquierda"):
-			$Animacion.play("corriendo_izquierda")
+			if not Input.is_action_pressed("arriba") and not Input.is_action_pressed("abajo"):
+				$Animacion.play("corriendo_izquierda")
 			encarando_x = 0
 			position.x -= velocidad
 			
