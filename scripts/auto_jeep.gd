@@ -11,6 +11,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var window = get_window()
-	position.x += velocidad
+	position.x += velocidad * direccion
 	if position.x < -100 or position.x > window.size.x + 100:
 		queue_free()

@@ -24,7 +24,7 @@ func spawn_timer():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var timer = Timer.new()
-	timer.wait_time = 2.0
+	timer.wait_time = 1.0
 	timer.connect("timeout", spawn_timer)  # Connect signal to self
 	add_child(timer)  # Add timer node to scene tree
 	timer.start()
