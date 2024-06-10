@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpsbtjmg54hi8"]
+
+[ext_resource type="Script" path="res://scripts/auto_jeep.gd" id="1_tbkxy"]
+[ext_resource type="Texture2D" uid="uid://ciau0f6i65ix4" path="res://assets/vehiculos/Green_JEEP_CLEAN_All_000.png" id="2_dsopy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v3w1"]
+size = Vector2(95, 58)
+
+[node name="Jeep" type="CharacterBody2D"]
+script = ExtResource("1_tbkxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_4v3w1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3.8147e-06, -1)
+scale = Vector2(1.66, 1.66)
+texture = ExtResource("2_dsopy")
