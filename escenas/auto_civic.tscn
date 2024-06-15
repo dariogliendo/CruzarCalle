@@ -4,9 +4,6 @@
 [ext_resource type="Script" path="res://scripts/auto_civic.gd" id="1_ri0g7"]
 [ext_resource type="PackedScene" uid="uid://dva7ae23t6ah8" path="res://escenas/area_relentizar.tscn" id="3_6iw6a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp51k"]
-size = Vector2(53, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf6bd"]
 atlas = ExtResource("1_4flpo")
 region = Rect2(0, 0, 100, 100)
@@ -99,19 +96,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp51k"]
+size = Vector2(53, 32)
+
+[node name="Civic" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_ri0g7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 4)
-shape = SubResource("RectangleShape2D_tp51k")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_piq7l")
 frame = 9
 frame_progress = 0.483687
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 4)
+shape = SubResource("RectangleShape2D_tp51k")
 
 [node name="Relentizar" parent="." instance=ExtResource("3_6iw6a")]
 position = Vector2(-32, 0)
