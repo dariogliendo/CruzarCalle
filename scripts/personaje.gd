@@ -1,41 +1,58 @@
 extends Node2D
 
+class_name Personaje
+
 @export var velocidad = 3
-var encarando_x = 1
-var encarando_y = 0
-var pos_inicial = Vector2(580, 575)
-var vivo = true
+var cara_visible = "espalda"
+var activo = true
 
+func muere():
+	activo = false
+	$Animacion.play("chocado")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+func gana():
+	activo = false
+	$Animacion.play("victoria")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if vivo:
-		if Input.is_action_pressed("arriba"):
-			$Animacion.play("corriendo_arriba")
-			encarando_y = 1
-			position.y -= velocidad
-		if Input.is_action_pressed("abajo"):
-			$Animacion.play("corriendo_abajo")
-			encarando_y = 0
-			position.y += velocidad
-		if Input.is_action_pressed("derecha"):
-			if not Input.is_action_pressed("arriba") and not Input.is_action_pressed("abajo"):
-				$Animacion.play("corriendo_derecha")
-			encarando_x = 1
-			position.x += velocidad
-		if Input.is_action_pressed("izquierda"):
-			if not Input.is_action_pressed("arriba") and not Input.is_action_pressed("abajo"):
-				$Animacion.play("corriendo_izquierda")
-			encarando_x = 0
-			position.x -= velocidad
-			
-		if not Input.is_anything_pressed():
-			if encarando_y:
-				$Animacion.play("idle_espalda")
-			else:
-				$Animacion.play("idle_frente")
+	
+	# Si no está activo, no se mueve
+	if not(activo): return
+	
+	# Leemos las teclas y modificamos la posición
+	var v = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
+	position += v * velocidad
+	
+	# Actualizamos la apariencia según la velocidad
+	apariencia(v)
+
+
+# Determina la apariencia a partir del vector velocidad
+func apariencia(v: Vector2):
+	
+	const DEADZONE = 0.1
+	
+	var quieto = v.length() < DEADZONE
+	var yendo_arr = not(quieto) and v.y < -DEADZONE
+	var yendo_abj = not(quieto) and v.y > DEADZONE
+	var yendo_izq = not(quieto) and v.x < -DEADZONE
+	var yendo_der = not(quieto) and v.x > DEADZONE
+	
+	if quieto:
+		$Animacion.play("idle_" + cara_visible)
+		
+	if yendo_der:
+		$Animacion.play("corriendo_derecha")
+		
+	if yendo_izq:
+		$Animacion.play("corriendo_izquierda")
+
+	if yendo_abj:
+		$Animacion.play("corriendo_abajo")
+		cara_visible = "frente"
+		
+	if yendo_arr:
+		$Animacion.play("corriendo_arriba")
+		cara_visible = "espalda"
+	
+	

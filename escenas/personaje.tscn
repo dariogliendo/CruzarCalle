@@ -281,13 +281,15 @@ animations = [{
 size = Vector2(49, 21)
 
 [node name="Personaje" type="Area2D"]
+position = Vector2(547, 339)
 script = ExtResource("1_k2hsb")
 
 [node name="Animacion" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4.3125, 4.3125)
 sprite_frames = SubResource("SpriteFrames_idc5b")
-animation = &"victoria"
+animation = &"corriendo_abajo"
+frame_progress = 0.843113
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
