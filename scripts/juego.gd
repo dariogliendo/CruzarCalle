@@ -1,5 +1,6 @@
 extends Node2D
 
+# Autitos
 const JEEP = preload("res://escenas/auto_jeep.tscn")
 const CAMION = preload("res://escenas/auto_camion.tscn")
 const AMBULANCIA = preload("res://escenas/auto_ambulancia.tscn")
