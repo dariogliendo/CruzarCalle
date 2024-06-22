@@ -33,3 +33,5 @@ func _on_area_2d_area_entered(area):
 	
 func _on_spawn_timer_timeout():
 	add_child($Vehiculos.spawnear_auto(Utils.choice(tracks)))
+
+# Comentario :)
