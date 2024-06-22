@@ -2,9 +2,10 @@ extends Node2D
 
 class_name Personaje
 
-@export var velocidad = 3
+@export var rapidez = 300
 var cara_visible = "espalda"
 var activo = true
+var v = Vector2.ZERO
 
 func muere():
 	activo = false
@@ -20,14 +21,18 @@ func _process(delta):
 	if not(activo): return
 	
 	# Leemos las teclas y modificamos la posición
-	var v = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
-	position += v * velocidad
+	var a = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
+	v += a * delta * 5
+	position += v * rapidez * delta
+	position = position.clamp(Vector2.ZERO, get_viewport_rect().size)
 	
-	# Actualizamos la apariencia según la velocidad
+	v *= 0.98
+	
+	# Actualizamos la apariencia según la rapidez
 	apariencia(v)
 
 
-# Determina la apariencia a partir del vector velocidad
+# Determina la apariencia a partir del vector rapidez
 func apariencia(v: Vector2):
 	
 	const DEADZONE = 0.1

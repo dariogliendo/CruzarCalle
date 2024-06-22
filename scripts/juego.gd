@@ -3,6 +3,9 @@ extends Node
 const tracks = [200, 270, 370, 450]
 @export var frecuencia_autos : float = 1.0
 
+func _process(dt):
+	$SpawnTimer.wait_time = $HSlider.value
+
 func _ready():
 	$SpawnTimer.wait_time = frecuencia_autos
 
