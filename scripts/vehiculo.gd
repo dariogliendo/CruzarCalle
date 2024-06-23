@@ -23,7 +23,7 @@ func init_offscreen():
 func _ready():
 	init_offscreen()
 
-func _process(delta):
+func _physics_process(delta):
 	
 	# Movimiento
 	if not stopped:

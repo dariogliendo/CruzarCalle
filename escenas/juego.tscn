@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciohc5deuggtb"]
+[gd_scene load_steps=17 format=3 uid="uid://ciohc5deuggtb"]
 
 [ext_resource type="PackedScene" uid="uid://cclue3lptd3wt" path="res://escenas/personaje.tscn" id="1_0mh5n"]
 [ext_resource type="Script" path="res://scripts/juego.gd" id="1_wngge"]
@@ -8,6 +8,18 @@
 [ext_resource type="Script" path="res://scripts/interfaz.gd" id="5_suhis"]
 [ext_resource type="AudioStream" uid="uid://dmonarq3cuqin" path="res://assets/dark-souls-_you-died_-sound-effect-from-youtube.mp3" id="6_oclse"]
 [ext_resource type="AudioStream" uid="uid://ibv473mlo2f2" path="res://assets/open-new-level-143027.mp3" id="6_qr67r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knkyn"]
+size = Vector2(31.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qfko"]
+size = Vector2(45, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkef8"]
+size = Vector2(79, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxwv3"]
+size = Vector2(46, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frscx"]
 size = Vector2(1157, 129)
@@ -50,7 +62,6 @@ _data = {
 
 [node name="Juego" type="Node"]
 script = ExtResource("1_wngge")
-frecuencia_autos = 0.5
 
 [node name="Vehiculos" type="Node" parent="."]
 script = ExtResource("2_14vgf")
@@ -69,6 +80,42 @@ z_index = 2
 tile_set = ExtResource("2_fkwpw")
 format = 2
 layer_0/tile_data = PackedInt32Array(2424851, 65536, 12, 2359355, 131072, 11, 2490434, 458752, 11, 2490413, 262144, 12, 2424838, 196608, 11, 2228237, 393216, 11, 2555932, 65536, 12, 2424883, 262144, 13, 327730, 0, 13, 327742, 196608, 12, 458810, 196608, 13, 131130, 327680, 13, 393235, 131072, 11, 131084, 65536, 12, 327686, 262144, 12, 458763, 131072, 12, 262151, 393216, 11, 393217, 327680, 13, 393256, 65536, 11, 196643, 262144, 11, 458779, 393216, 11, 196633, 327680, 12, 589877, 393216, 11, 262213, 196608, 13, 131140, 196608, 13, 2359342, 393216, 11, 2490406, 65536, 12, 2293785, 65536, 12, 2424856, 131072, 11, 2555917, 131072, 13, 2293765, 65536, 13, 2293761, 393216, 11, 2490369, 262144, 12)
+
+[node name="Lane_200_Trigger" type="Area2D" parent="Mapa"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Lane_200_Trigger"]
+position = Vector2(294.25, 198)
+shape = SubResource("RectangleShape2D_knkyn")
+
+[node name="RespawnTimer_200" type="Timer" parent="Mapa/Lane_200_Trigger"]
+one_shot = true
+
+[node name="Lane_270_Trigger" type="Area2D" parent="Mapa"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Lane_270_Trigger"]
+position = Vector2(301, 270)
+shape = SubResource("RectangleShape2D_4qfko")
+
+[node name="RespawnTimer_270" type="Timer" parent="Mapa/Lane_270_Trigger"]
+one_shot = true
+
+[node name="Lane_370_Trigger" type="Area2D" parent="Mapa"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Lane_370_Trigger"]
+position = Vector2(315, 370.5)
+shape = SubResource("RectangleShape2D_lkef8")
+
+[node name="RespawnTimer_370" type="Timer" parent="Mapa/Lane_370_Trigger"]
+one_shot = true
+
+[node name="Lane_450_Trigger" type="Area2D" parent="Mapa"]
+
+[node name="RespawnTimer_450" type="Timer" parent="Mapa/Lane_450_Trigger"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/Lane_450_Trigger"]
+position = Vector2(295, 450)
+shape = SubResource("RectangleShape2D_bxwv3")
 
 [node name="Gallina" parent="." instance=ExtResource("1_0mh5n")]
 z_index = 3
@@ -118,6 +165,14 @@ stream = ExtResource("6_oclse")
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="body_entered" from="Mapa/Lane_200_Trigger" to="." method="_on_lane_200_trigger_body_entered"]
+[connection signal="timeout" from="Mapa/Lane_200_Trigger/RespawnTimer_200" to="." method="_on_respawn_timer_200_timeout"]
+[connection signal="body_entered" from="Mapa/Lane_270_Trigger" to="." method="_on_lane_270_trigger_body_entered"]
+[connection signal="timeout" from="Mapa/Lane_270_Trigger/RespawnTimer_270" to="." method="_on_respawn_timer_270_timeout"]
+[connection signal="body_entered" from="Mapa/Lane_370_Trigger" to="." method="_on_lane_370_trigger_body_entered"]
+[connection signal="timeout" from="Mapa/Lane_370_Trigger/RespawnTimer_370" to="." method="_on_respawn_timer_370_timeout"]
+[connection signal="body_entered" from="Mapa/Lane_450_Trigger" to="." method="_on_lane_450_trigger_body_entered"]
+[connection signal="timeout" from="Mapa/Lane_450_Trigger/RespawnTimer_450" to="." method="_on_respawn_timer_450_timeout"]
 [connection signal="body_entered" from="Gallina" to="." method="_on_gallina_body_entered"]
 [connection signal="area_entered" from="ElOtroLado" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
