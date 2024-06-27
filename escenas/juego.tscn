@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ciohc5deuggtb"]
+[gd_scene load_steps=20 format=3 uid="uid://ciohc5deuggtb"]
 
 [ext_resource type="PackedScene" uid="uid://cclue3lptd3wt" path="res://escenas/personaje.tscn" id="1_0mh5n"]
 [ext_resource type="Script" path="res://scripts/juego.gd" id="1_wngge"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dmonarq3cuqin" path="res://assets/dark-souls-_you-died_-sound-effect-from-youtube.mp3" id="6_oclse"]
 [ext_resource type="AudioStream" uid="uid://ibv473mlo2f2" path="res://assets/open-new-level-143027.mp3" id="6_qr67r"]
 [ext_resource type="Script" path="res://scripts/ContadorInicio.gd" id="9_bmms7"]
+[ext_resource type="AudioStream" uid="uid://wmsq5avq80je" path="res://assets/countdown.wav" id="10_6id40"]
+[ext_resource type="AudioStream" uid="uid://dnxlol2ta0yji" path="res://assets/endbeep.wav" id="11_4c0x6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knkyn"]
 size = Vector2(31.5, 20)
@@ -163,15 +165,12 @@ stream = ExtResource("6_qr67r")
 [node name="die_sound" type="AudioStreamPlayer2D" parent="Interfaz"]
 stream = ExtResource("6_oclse")
 
-[node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="ContadorInicio" type="Node" parent="."]
+[node name="ContadorInicio" type="Node" parent="Interfaz"]
 script = ExtResource("9_bmms7")
 
-[node name="Timer" type="Timer" parent="ContadorInicio"]
+[node name="Timer" type="Timer" parent="Interfaz/ContadorInicio"]
 
-[node name="Label" type="Label" parent="ContadorInicio"]
+[node name="Label" type="Label" parent="Interfaz/ContadorInicio"]
 anchors_preset = -1
 anchor_right = 0.998
 anchor_bottom = 1.006
@@ -180,6 +179,15 @@ offset_bottom = 0.112
 theme_override_font_sizes/font_size = 90
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="countdown" type="AudioStreamPlayer" parent="Interfaz/ContadorInicio"]
+stream = ExtResource("10_6id40")
+
+[node name="timerend" type="AudioStreamPlayer" parent="Interfaz/ContadorInicio"]
+stream = ExtResource("11_4c0x6")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="Mapa/Lane_200_Trigger" to="." method="_on_lane_200_trigger_body_entered"]
 [connection signal="timeout" from="Mapa/Lane_200_Trigger/RespawnTimer_200" to="." method="_on_respawn_timer_200_timeout"]
@@ -191,6 +199,6 @@ vertical_alignment = 1
 [connection signal="timeout" from="Mapa/Lane_450_Trigger/RespawnTimer_450" to="." method="_on_respawn_timer_450_timeout"]
 [connection signal="body_entered" from="Gallina" to="." method="_on_gallina_body_entered"]
 [connection signal="area_entered" from="ElOtroLado" to="." method="_on_area_2d_area_entered"]
+[connection signal="contador_inicio_completado" from="Interfaz/ContadorInicio" to="Gallina" method="_on_contador_inicio_contador_inicio_completado"]
+[connection signal="timeout" from="Interfaz/ContadorInicio/Timer" to="Interfaz/ContadorInicio" method="_on_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="contador_inicio_completado" from="ContadorInicio" to="Gallina" method="_on_contador_inicio_contador_inicio_completado"]
-[connection signal="timeout" from="ContadorInicio/Timer" to="ContadorInicio" method="_on_timer_timeout"]
