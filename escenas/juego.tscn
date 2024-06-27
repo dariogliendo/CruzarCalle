@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ciohc5deuggtb"]
+[gd_scene load_steps=18 format=3 uid="uid://ciohc5deuggtb"]
 
 [ext_resource type="PackedScene" uid="uid://cclue3lptd3wt" path="res://escenas/personaje.tscn" id="1_0mh5n"]
 [ext_resource type="Script" path="res://scripts/juego.gd" id="1_wngge"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/interfaz.gd" id="5_suhis"]
 [ext_resource type="AudioStream" uid="uid://dmonarq3cuqin" path="res://assets/dark-souls-_you-died_-sound-effect-from-youtube.mp3" id="6_oclse"]
 [ext_resource type="AudioStream" uid="uid://ibv473mlo2f2" path="res://assets/open-new-level-143027.mp3" id="6_qr67r"]
+[ext_resource type="Script" path="res://scripts/ContadorInicio.gd" id="9_bmms7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knkyn"]
 size = Vector2(31.5, 20)
@@ -165,6 +166,21 @@ stream = ExtResource("6_oclse")
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ContadorInicio" type="Node" parent="."]
+script = ExtResource("9_bmms7")
+
+[node name="Timer" type="Timer" parent="ContadorInicio"]
+
+[node name="Label" type="Label" parent="ContadorInicio"]
+anchors_preset = -1
+anchor_right = 0.998
+anchor_bottom = 1.006
+offset_right = 0.303955
+offset_bottom = 0.112
+theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="Mapa/Lane_200_Trigger" to="." method="_on_lane_200_trigger_body_entered"]
 [connection signal="timeout" from="Mapa/Lane_200_Trigger/RespawnTimer_200" to="." method="_on_respawn_timer_200_timeout"]
 [connection signal="body_entered" from="Mapa/Lane_270_Trigger" to="." method="_on_lane_270_trigger_body_entered"]
@@ -176,3 +192,5 @@ autostart = true
 [connection signal="body_entered" from="Gallina" to="." method="_on_gallina_body_entered"]
 [connection signal="area_entered" from="ElOtroLado" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="contador_inicio_completado" from="ContadorInicio" to="Gallina" method="_on_contador_inicio_contador_inicio_completado"]
+[connection signal="timeout" from="ContadorInicio/Timer" to="ContadorInicio" method="_on_timer_timeout"]

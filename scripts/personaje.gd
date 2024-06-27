@@ -4,7 +4,7 @@ class_name Personaje
 
 @export var velocidad = 3
 var cara_visible = "espalda"
-var activo = true
+var activo = false
 
 func muere():
 	activo = false
@@ -56,3 +56,7 @@ func apariencia(v: Vector2):
 		cara_visible = "espalda"
 	
 	
+
+
+func _on_contador_inicio_contador_inicio_completado():
+	activo = true;
