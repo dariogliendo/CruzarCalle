@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tp51k"]
-size = Vector2(53, 32)
+size = Vector2(42, 26)
 
 [node name="Civic" type="CharacterBody2D"]
 collision_layer = 3
@@ -110,7 +110,7 @@ frame = 9
 frame_progress = 0.483687
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 4)
+position = Vector2(-2, 3)
 shape = SubResource("RectangleShape2D_tp51k")
 
 [node name="Relentizar" parent="." instance=ExtResource("3_6iw6a")]

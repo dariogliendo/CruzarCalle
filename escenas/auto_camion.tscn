@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fwe8"]
-size = Vector2(101, 41)
+size = Vector2(74.5, 34)
 
 [node name="Camion" type="CharacterBody2D"]
 collision_layer = 3
@@ -108,7 +108,7 @@ script = ExtResource("1_h82jm")
 sprite_frames = SubResource("SpriteFrames_ucp7s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -0.5)
+position = Vector2(-9.25, 1)
 shape = SubResource("RectangleShape2D_3fwe8")
 
 [node name="Relentizar" parent="." instance=ExtResource("3_ua770")]

@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22rrk"]
-size = Vector2(82, 32)
+size = Vector2(73, 25)
 
 [node name="Pickup" type="CharacterBody2D"]
 script = ExtResource("1_f7uub")
@@ -107,7 +107,7 @@ sprite_frames = SubResource("SpriteFrames_i83ak")
 frame_progress = 0.665554
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 4)
+position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_22rrk")
 
 [node name="Relentizar" parent="." instance=ExtResource("2_qjalh")]

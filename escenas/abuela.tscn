@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://di1n5jgk5k2m5"]
+
+[ext_resource type="Script" path="res://scripts/abuela.gd" id="1_heved"]
+[ext_resource type="Texture2D" uid="uid://njgvmkby32oe" path="res://assets/PlayStation - Xenogears - Lahan Old Woman.png" id="1_jkp2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw6st"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nflg"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ape2q"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycum5"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpltd"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjc16"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reta3"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ou6"]
+atlas = ExtResource("1_jkp2v")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47ki0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw6st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nflg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ape2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycum5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpltd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjc16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reta3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ou6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6b8ef"]
+
+[node name="Abuela" type="Area2D"]
+script = ExtResource("1_heved")
+
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_47ki0")
+frame_progress = 0.497155
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_6b8ef")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

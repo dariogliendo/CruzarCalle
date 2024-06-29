@@ -97,7 +97,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enj7u"]
-size = Vector2(84, 34)
+size = Vector2(71, 29)
 
 [node name="Cheto" type="CharacterBody2D"]
 collision_layer = 3
@@ -108,7 +108,7 @@ script = ExtResource("1_1vfds")
 sprite_frames = SubResource("SpriteFrames_8cmk5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 4)
+position = Vector2(-2.5, 3.5)
 shape = SubResource("RectangleShape2D_enj7u")
 
 [node name="Relentizar" parent="." instance=ExtResource("3_d0wdn")]
